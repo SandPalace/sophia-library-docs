@@ -13,15 +13,15 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://kikirrins.github.io',
+  url: 'https://sandpalace.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/sophia/',
+  baseUrl: '/sophia-library-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'sandpalace', // Usually your GitHub org/user name.
-  projectName: 'sophia', // Usually your repo name.
+  organizationName: 'SandPalace', // Usually your GitHub org/user name.
+  projectName: 'sophia-library-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages',
   trailingSlash: false,
 
@@ -85,7 +85,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/YOUR_GITHUB_USERNAME/sophia',
+            href: 'https://github.com/SandPalace/sophia-library-docs',
             label: 'GitHub',
             position: 'right',
           },
@@ -133,7 +133,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/YOUR_GITHUB_USERNAME/sophia',
+                href: 'https://github.com/SandPalace/sophia-library-docs',
               },
             ],
           },
