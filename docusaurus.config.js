@@ -46,7 +46,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/YOUR_GITHUB_USERNAME/sophia/tree/main/docs-site/',
+            'https://github.com/SandPalace/sophia-library-docs/tree/main/',
         },
         blog: false,
         theme: {
