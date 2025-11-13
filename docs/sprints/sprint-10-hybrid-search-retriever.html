@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-sprints/sprint-10-hybrid-search-retriever" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Sprint 10: Hybrid Search Retriever Integration | Sophia Library API</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://sandpalace.github.io/sophia-library-docs/img/sophia-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://sandpalace.github.io/sophia-library-docs/img/sophia-social-card.jpg"><meta data-rh="true" property="og:url" content="https://sandpalace.github.io/sophia-library-docs/docs/sprints/sprint-10-hybrid-search-retriever"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="keywords" content="api, philosophy, religious texts, ai, search, semantic search, openai, qdrant, opensearch"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Sprint 10: Hybrid Search Retriever Integration | Sophia Library API"><meta data-rh="true" name="description" content="Status: ✅ COMPLETED"><meta data-rh="true" property="og:description" content="Status: ✅ COMPLETED"><link data-rh="true" rel="icon" href="/sophia-library-docs/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://sandpalace.github.io/sophia-library-docs/docs/sprints/sprint-10-hybrid-search-retriever"><link data-rh="true" rel="alternate" href="https://sandpalace.github.io/sophia-library-docs/docs/sprints/sprint-10-hybrid-search-retriever" hreflang="en"><link data-rh="true" rel="alternate" href="https://sandpalace.github.io/sophia-library-docs/docs/sprints/sprint-10-hybrid-search-retriever" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Sprints","item":"https://sandpalace.github.io/sophia-library-docs/docs/category/sprints"},{"@type":"ListItem","position":2,"name":"Sprint 10: Hybrid Search Retriever Integration","item":"https://sandpalace.github.io/sophia-library-docs/docs/sprints/sprint-10-hybrid-search-retriever"}]}</script><link rel="stylesheet" href="/sophia-library-docs/assets/css/styles.5806a016.css">
+<script src="/sophia-library-docs/assets/js/runtime~main.c8a116c7.js" defer="defer"></script>
+<script src="/sophia-library-docs/assets/js/main.d3c1c8f3.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/sophia-library-docs/"><div class="navbar__logo"><img src="/sophia-library-docs/img/logo.svg" alt="Sophia Library Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/sophia-library-docs/img/logo.svg" alt="Sophia Library Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Sophia Library</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/sophia-library-docs/docs/intro">Documentation</a><a class="navbar__item navbar__link" href="/sophia-library-docs/docs/api-reference">API Reference</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="http://localhost:8888/api/v1/docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Try It (Swagger)<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><a href="https://github.com/SandPalace/sophia-library-docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/sophia-library-docs/docs/intro"><span title="Introduction" class="linkLabel_WmDU">Introduction</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/sophia-library-docs/docs/quick-start"><span title="Quick Start" class="linkLabel_WmDU">Quick Start</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/sophia-library-docs/docs/api-reference"><span title="API Reference" class="linkLabel_WmDU">API Reference</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/sophia-library-docs/docs/langgraph-integration"><span title="Integration Guides" class="categoryLinkLabel_W154">Integration Guides</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/sophia-library-docs/docs/search/semantic-search"><span title="Search Methods" class="categoryLinkLabel_W154">Search Methods</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/sophia-library-docs/docs/category/sprints"><span title="Sprints" class="categoryLinkLabel_W154">Sprints</span></a><button aria-label="Collapse sidebar category &#x27;Sprints&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/sophia-library-docs/docs/sprints/sprint-8-qdrant-semantic-search"><span title="Sprint 8: Qdrant Semantic Search Integration" class="linkLabel_WmDU">Sprint 8: Qdrant Semantic Search Integration</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/sophia-library-docs/docs/sprints/sprint-9-opensearch-keyword-search"><span title="Sprint 9: OpenSearch Keyword Search Integration" class="linkLabel_WmDU">Sprint 9: OpenSearch Keyword Search Integration</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/sophia-library-docs/docs/sprints/sprint-10-hybrid-search-retriever"><span title="Sprint 10: Hybrid Search Retriever Integration" class="linkLabel_WmDU">Sprint 10: Hybrid Search Retriever Integration</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/sophia-library-docs/docs/sprints/sprint-11-search-result-formatting"><span title="Sprint 11: Search Result Formatting &amp; API Harmonization" class="linkLabel_WmDU">Sprint 11: Search Result Formatting &amp; API Harmonization</span></a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/sophia-library-docs/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/sophia-library-docs/docs/category/sprints"><span>Sprints</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Sprint 10: Hybrid Search Retriever Integration</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Sprint 10: Hybrid Search Retriever Integration</h1></header>
+<p><strong>Status</strong>: ✅ COMPLETED
+<strong>Priority</strong>: HIGH
+<strong>Dependencies</strong>: Sprint 8 (Qdrant Semantic Search), Sprint 9 (OpenSearch Keyword Search)
+<strong>Completion Date</strong>: November 12, 2025
+<strong>Actual Duration</strong>: &lt;1 day</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview">Overview<a href="#overview" class="hash-link" aria-label="Direct link to Overview" title="Direct link to Overview" translate="no">​</a></h2>
+<p>Implement hybrid search functionality that combines semantic (vector) search from Qdrant with keyword (full-text) search from OpenSearch to provide the best of both worlds. This sprint focuses on understanding the existing HybridRetriever service and integrating it into the API layer with proper result merging and ranking strategies.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-achievements">Key Achievements<a href="#key-achievements" class="hash-link" aria-label="Direct link to Key Achievements" title="Direct link to Key Achievements" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-completed-tasks">✅ Completed Tasks<a href="#-completed-tasks" class="hash-link" aria-label="Direct link to ✅ Completed Tasks" title="Direct link to ✅ Completed Tasks" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p><strong>HybridRetriever Already Fully Implemented</strong></p>
+<ul>
+<li class="">RRF (Reciprocal Rank Fusion) algorithm implemented</li>
+<li class="">Configurable weights for vector and keyword search</li>
+<li class="">Automatic deduplication of overlapping results</li>
+<li class="">Score breakdown tracking (vector_rank, keyword_rank, vector_score, keyword_score)</li>
+<li class="">Fetch multiplier for better fusion results</li>
+</ul>
+</li>
+<li class="">
+<p><strong>SearchAdapter Integration</strong></p>
+<ul>
+<li class="">Fixed <code>hybrid_search()</code> method parameter mapping (semantic_weight → vector_weight)</li>
+<li class="">Added required <code>collection_name</code> and <code>opensearch_index</code> parameters</li>
+<li class="">Updated <code>_format_search_results()</code> to handle <code>HybridResult</code> objects</li>
+<li class="">Proper integration with Qdrant filters</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Testing &amp; Validation</strong></p>
+<ul>
+<li class="">Tested direct HybridRetriever calls</li>
+<li class="">Tested SearchAdapter integration</li>
+<li class="">Compared semantic vs keyword vs hybrid results</li>
+<li class="">Verified RRF fusion working correctly</li>
+<li class="">Tested different weight combinations (0.9/0.1, 0.5/0.5, 0.1/0.9)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Result Quality</strong></p>
+<ul>
+<li class="">Hybrid search successfully combines strengths of both methods</li>
+<li class="">RRF scores range: 0.0049-0.0158 (lower than individual scores due to fusion algorithm)</li>
+<li class="">Deduplication working correctly (no duplicate chunk_ids)</li>
+<li class="">Both methods contribute to final ranking</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="implementation-findings--resolutions">Implementation Findings &amp; Resolutions<a href="#implementation-findings--resolutions" class="hash-link" aria-label="Direct link to Implementation Findings &amp; Resolutions" title="Direct link to Implementation Findings &amp; Resolutions" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="issue-1-parameter-naming-mismatch">Issue 1: Parameter Naming Mismatch<a href="#issue-1-parameter-naming-mismatch" class="hash-link" aria-label="Direct link to Issue 1: Parameter Naming Mismatch" title="Direct link to Issue 1: Parameter Naming Mismatch" translate="no">​</a></h4>
+<p><strong>Problem</strong>: SearchAdapter.hybrid_search() used <code>semantic_weight</code> parameter, but HybridRetriever.retrieve() expects <code>vector_weight</code>.</p>
+<p><strong>Root Cause</strong>: Inconsistent naming convention between API layer (semantic) and retrieval layer (vector).</p>
+<p><strong>Resolution</strong>:
+Updated <a class="" href="/sophia-library-docs/services/api/api_service/services/search_adapter.py#L135">search_adapter.py:135</a> to map correctly:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">results </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> self</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">hybrid_retriever</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">retrieve</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    query</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">query</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    collection_name</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&quot;sophia_library&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    opensearch_index</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&quot;sophia_library&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    top_k</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">top_k</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    vector_weight</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">semantic_weight</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># Map semantic_weight → vector_weight</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    keyword_weight</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">keyword_weight</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    filter_dict</span><span class="token operator" style="color:#393A34">=</span><span class="token plain">qdrant_filter</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="issue-2-hybridresult-object-formatting">Issue 2: HybridResult Object Formatting<a href="#issue-2-hybridresult-object-formatting" class="hash-link" aria-label="Direct link to Issue 2: HybridResult Object Formatting" title="Direct link to Issue 2: HybridResult Object Formatting" translate="no">​</a></h4>
+<p><strong>Problem</strong>: <code>_format_search_results()</code> tried to access <code>.id</code> attribute on HybridResult objects, causing AttributeError.</p>
+<p><strong>Root Cause</strong>: HybridResult uses <code>.chunk_id</code>, <code>.score</code>, <code>.text</code>, and <code>.metadata</code> attributes directly (not <code>.id</code> and <code>.payload</code> like Qdrant/OpenSearch objects).</p>
+<p><strong>Resolution</strong>:
+Updated <a class="" href="/sophia-library-docs/services/api/api_service/services/search_adapter.py#L235-L240">search_adapter.py:235-240</a> to check for HybridResult first:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token builtin">isinstance</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> HybridResult</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic"># Handle HybridResult objects (from HybridRetriever)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    chunk_id </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> result</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">chunk_id</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    score </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">float</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    text </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> result</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">text</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    metadata </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> result</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">metadata </span><span class="token keyword" style="color:#00009f">or</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="current-state">Current State<a href="#current-state" class="hash-link" aria-label="Direct link to Current State" title="Direct link to Current State" translate="no">​</a></h3>
+<p><strong>SearchAdapter Capabilities</strong>:</p>
+<ul>
+<li class="">✅ Semantic search (Qdrant with vector embeddings) - Sprint 8</li>
+<li class="">✅ Keyword search (OpenSearch with BM25) - Sprint 9</li>
+<li class="">✅ Hybrid search (RRF fusion of both) - Sprint 10</li>
+</ul>
+<p><strong>Hybrid Search Features</strong>:</p>
+<ul>
+<li class="">Reciprocal Rank Fusion (RRF) algorithm with configurable k=60</li>
+<li class="">Configurable weights (default: 0.7 semantic, 0.3 keyword)</li>
+<li class="">Automatic deduplication of overlapping results</li>
+<li class="">Fetch multiplier (2.0x) for better fusion quality</li>
+<li class="">Full score breakdown available in HybridResult objects</li>
+<li class="">Filter support (passed to Qdrant semantic search)</li>
+</ul>
+<p><strong>RRF Algorithm</strong>:</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">score</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">d</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> vector_weight </span><span class="token operator" style="color:#393A34">/</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">k </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> vector_rank</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> keyword_weight </span><span class="token operator" style="color:#393A34">/</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">k </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> keyword_rank</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>Where:</p>
+<ul>
+<li class="">k = 60 (RRF constant, reduces impact of top ranks)</li>
+<li class="">vector_rank = position in semantic search results (1-based)</li>
+<li class="">keyword_rank = position in keyword search results (1-based)</li>
+<li class="">Weights are normalized to sum to 1.0</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-query-results">Example Query Results<a href="#example-query-results" class="hash-link" aria-label="Direct link to Example Query Results" title="Direct link to Example Query Results" translate="no">​</a></h3>
+<p><strong>Query</strong>: &quot;theory of relativity&quot;</p>
+<table><thead><tr><th>Method</th><th>Top Result</th><th>Score</th><th>Notes</th></tr></thead><tbody><tr><td>Semantic</td><td>Richard Feynman</td><td>0.5029</td><td>Conceptually related physics content</td></tr><tr><td>Keyword</td><td>Albert Einstein</td><td>15.2390</td><td>Exact term match</td></tr><tr><td>Hybrid (0.7/0.3)</td><td>Richard Feynman</td><td>0.0115</td><td>Combines both signals</td></tr></tbody></table>
+<p><strong>Query</strong>: &quot;Nietzsche critique of morality&quot;</p>
+<table><thead><tr><th>Method</th><th>Top Result</th><th>Score</th><th>Notes</th></tr></thead><tbody><tr><td>Semantic</td><td>(Various)</td><td>0.7575</td><td>Understands concept</td></tr><tr><td>Keyword</td><td>Friedrich Nietzsche</td><td>16.9942</td><td>Exact author match</td></tr><tr><td>Hybrid (0.7/0.3)</td><td>Friedrich Nietzsche</td><td>0.0049</td><td>Best of both</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="missing--future-enhancements">Missing / Future Enhancements<a href="#missing--future-enhancements" class="hash-link" aria-label="Direct link to Missing / Future Enhancements" title="Direct link to Missing / Future Enhancements" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p><strong>Parallel Execution</strong></p>
+<ul>
+<li class="">Current status: Sequential execution (semantic then keyword)</li>
+<li class="">TODO: Implement asyncio/threading for parallel searches</li>
+<li class="">Expected improvement: ~50% latency reduction</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Enhanced Metadata in Results</strong></p>
+<ul>
+<li class="">Current status: Basic fusion score returned</li>
+<li class="">TODO: Expose vector_rank, keyword_rank, individual scores in API response</li>
+<li class="">Would help users understand why results were ranked</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Filter Support for Keyword Search</strong></p>
+<ul>
+<li class="">Current status: Filters only applied to semantic search</li>
+<li class="">TODO: Implement OpenSearch filter mapping</li>
+<li class="">Would enable consistent filtering across both methods</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Configurable Fusion Strategies</strong></p>
+<ul>
+<li class="">Current status: RRF only</li>
+<li class="">TODO: Add weighted score combination option</li>
+<li class="">Would allow different fusion approaches</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="phase-1-investigation--discovery">Phase 1: Investigation &amp; Discovery<a href="#phase-1-investigation--discovery" class="hash-link" aria-label="Direct link to Phase 1: Investigation &amp; Discovery" title="Direct link to Phase 1: Investigation &amp; Discovery" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="11-understand-current-hybridretriever-implementation">1.1 Understand Current HybridRetriever Implementation<a href="#11-understand-current-hybridretriever-implementation" class="hash-link" aria-label="Direct link to 1.1 Understand Current HybridRetriever Implementation" title="Direct link to 1.1 Understand Current HybridRetriever Implementation" translate="no">​</a></h3>
+<p><strong>Objective</strong>: Deep dive into the existing HybridRetriever to understand its architecture and algorithms.</p>
+<p><strong>Investigation Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Examine HybridRetriever API</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Read <a class="" href="/sophia-library-docs/services/retrieval/retrieval_service/hybrid_retriever.py">services/retrieval/retrieval_service/hybrid_retriever.py</a></li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document the <code>retrieve()</code> method signature and parameters</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand initialization requirements (dependencies)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify what the method returns (format, structure)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check for existing error handling patterns</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Review any configuration options</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Analyze Result Fusion Algorithm</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify the fusion algorithm used (Reciprocal Rank Fusion, weighted average, etc.)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand how semantic_weight and keyword_weight are applied</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check if normalization is applied to scores before merging</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand deduplication logic (if any)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document how final ranking is computed</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify edge cases (no semantic results, no keyword results, etc.)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Review Dependencies</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document required services (QdrantService, OpenSearchService)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check if Embedder is used internally or passed results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify any other dependencies</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand initialization order requirements</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Test Direct HybridRetriever Calls</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Write test script to call retrieve() directly</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with different weight combinations (0.7/0.3, 0.5/0.5, 0.3/0.7)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with queries that favor semantic (conceptual)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with queries that favor keyword (exact terms)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare results with individual search methods</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document response times</li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Findings</strong>:</p>
+<ul>
+<li class="">Exact method signature for <code>HybridRetriever.retrieve()</code></li>
+<li class="">Fusion algorithm details (RRF, linear combination, etc.)</li>
+<li class="">Weight application methodology</li>
+<li class="">Performance characteristics</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="12-understand-result-merging-strategies">1.2 Understand Result Merging Strategies<a href="#12-understand-result-merging-strategies" class="hash-link" aria-label="Direct link to 1.2 Understand Result Merging Strategies" title="Direct link to 1.2 Understand Result Merging Strategies" translate="no">​</a></h3>
+<p><strong>Objective</strong>: Understand different approaches to combining search results and their trade-offs.</p>
+<p><strong>Investigation Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Study Reciprocal Rank Fusion (RRF)</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Research RRF algorithm (rank-based fusion)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand advantages (no score normalization needed)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand disadvantages (ignores actual scores)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test if current implementation uses RRF</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare RRF vs. weighted score combination</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Study Weighted Score Combination</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand score normalization approaches (min-max, z-score)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document how semantic and keyword scores are normalized</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test weight sensitivity (how much impact do weights have?)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify potential issues (score scale mismatches)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Study Deduplication Strategies</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand how duplicate results are handled</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check if chunk_id is used for deduplication</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand which score is kept (higher, average, weighted)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test deduplication with overlapping results</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Comparative Analysis</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Create test query set (10 queries)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Run through semantic only, keyword only, hybrid</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare result quality and ranking</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify when hybrid outperforms individual methods</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document sweet spots for different weight combinations</li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Findings</strong>:</p>
+<ul>
+<li class="">Fusion algorithm used in current implementation</li>
+<li class="">Score normalization approach</li>
+<li class="">Deduplication strategy</li>
+<li class="">Optimal weight ranges for different query types</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="13-examine-existing-search-adapter-integration">1.3 Examine Existing Search Adapter Integration<a href="#13-examine-existing-search-adapter-integration" class="hash-link" aria-label="Direct link to 1.3 Examine Existing Search Adapter Integration" title="Direct link to 1.3 Examine Existing Search Adapter Integration" translate="no">​</a></h3>
+<p><strong>Objective</strong>: Understand how HybridRetriever is currently integrated (or needs to be integrated).</p>
+<p><strong>Investigation Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Analyze Current Implementation</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Read <code>hybrid_search()</code> method in <a class="" href="/sophia-library-docs/services/api/api_service/services/search_adapter.py">search_adapter.py</a></li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document what&#x27;s implemented vs. stubbed out</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check how filters are passed to HybridRetriever</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Review parameter mapping from API to retriever</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Examine error handling</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Understand Parameter Flow</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Map API parameters to HybridRetriever.retrieve() parameters</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check if weights are exposed to API users</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Understand filter parameter structure</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify default values and their rationale</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Review Result Processing</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check if results need additional formatting</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verify metadata is preserved through fusion</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test if result format matches other search endpoints</li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Findings</strong>:</p>
+<ul>
+<li class="">Current integration status</li>
+<li class="">Parameter mapping completeness</li>
+<li class="">Any gaps or missing functionality</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="14-analyze-performance-characteristics">1.4 Analyze Performance Characteristics<a href="#14-analyze-performance-characteristics" class="hash-link" aria-label="Direct link to 1.4 Analyze Performance Characteristics" title="Direct link to 1.4 Analyze Performance Characteristics" translate="no">​</a></h3>
+<p><strong>Objective</strong>: Understand performance implications of hybrid search.</p>
+<p><strong>Investigation Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Measure Component Latencies</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Measure semantic search alone (from Sprint 8)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Measure keyword search alone (from Sprint 9)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Measure hybrid search total time</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify if searches run sequentially or in parallel</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Calculate fusion overhead</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Test Parallel vs. Sequential Execution</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check if current implementation runs searches in parallel</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test performance improvement of parallel execution</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify any race conditions or issues</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document threading/async patterns used</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Analyze Scalability</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with different top_k values (5, 10, 20, 50)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Measure how fusion time scales with result count</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test concurrent hybrid search requests</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify bottlenecks</li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Findings</strong>:</p>
+<ul>
+<li class="">Whether searches run in parallel</li>
+<li class="">Total latency breakdown (semantic + keyword + fusion)</li>
+<li class="">Scalability characteristics</li>
+<li class="">Optimization opportunities</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="phase-2-analysis--design">Phase 2: Analysis &amp; Design<a href="#phase-2-analysis--design" class="hash-link" aria-label="Direct link to Phase 2: Analysis &amp; Design" title="Direct link to Phase 2: Analysis &amp; Design" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="21-implications-analysis">2.1 Implications Analysis<a href="#21-implications-analysis" class="hash-link" aria-label="Direct link to 2.1 Implications Analysis" title="Direct link to 2.1 Implications Analysis" translate="no">​</a></h3>
+<p><strong>Objective</strong>: Understand the implications of design choices for hybrid search.</p>
+<p><strong>Analysis Questions</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Fusion Algorithm Implications</strong></p>
+<ul>
+<li class="">Does RRF or weighted scoring work better for our use case?</li>
+<li class="">How sensitive are results to weight changes?</li>
+<li class="">Should weights be user-configurable or system-optimized?</li>
+<li class="">What default weights provide best results?</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Performance Implications</strong></p>
+<ul>
+<li class="">Is the combined latency acceptable (semantic + keyword)?</li>
+<li class="">Should we implement caching at hybrid level?</li>
+<li class="">Would parallel execution help significantly?</li>
+<li class="">Are there timeout concerns?</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Result Quality Implications</strong></p>
+<ul>
+<li class="">Does hybrid consistently outperform individual methods?</li>
+<li class="">Are there query types where hybrid performs worse?</li>
+<li class="">How to handle cases where one method returns no results?</li>
+<li class="">Should we show users which method contributed each result?</li>
+</ul>
+</li>
+<li class="">
+<p><strong>API Design Implications</strong></p>
+<ul>
+<li class="">Should weights be exposed to users?</li>
+<li class="">Should we provide weight presets (e.g., &quot;balanced&quot;, &quot;semantic-heavy&quot;)?</li>
+<li class="">How to explain hybrid search to users?</li>
+<li class="">Should we show individual method scores in results?</li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Output</strong>: Design decisions document with rationale.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="22-design-decisions">2.2 Design Decisions<a href="#22-design-decisions" class="hash-link" aria-label="Direct link to 2.2 Design Decisions" title="Direct link to 2.2 Design Decisions" translate="no">​</a></h3>
+<p>Based on investigation findings, make explicit design decisions:</p>
+<ol>
+<li class="">
+<p><strong>Fusion Strategy</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Fusion algorithm choice (RRF vs. weighted score)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Score normalization approach</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Deduplication strategy</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Handling of ties in ranking</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Weight Configuration</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Default semantic_weight (e.g., 0.7)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Default keyword_weight (e.g., 0.3)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Allow user override (yes/no)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Weight validation rules (sum to 1.0?)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Weight presets (if any)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Execution Strategy</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Sequential vs. parallel search execution</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Timeout handling for each component</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Partial result handling (one method fails)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Fallback strategy</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Result Format</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Include fusion metadata (weights used, sources)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Include individual scores (semantic_score, keyword_score)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Include result source indicator (semantic, keyword, both)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Standard vs. extended response format</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Parameter Exposure</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Expose semantic_weight to API (yes/no)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Expose keyword_weight to API (yes/no)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Expose individual method parameters (score_threshold, fuzziness)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Provide preset modes vs. granular control</li>
+</ul>
+</li>
+</ol>
+<p><strong>Expected Output</strong>: API specification document for hybrid search endpoint.</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="phase-3-implementation-plan">Phase 3: Implementation Plan<a href="#phase-3-implementation-plan" class="hash-link" aria-label="Direct link to Phase 3: Implementation Plan" title="Direct link to Phase 3: Implementation Plan" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="31-enhance-hybridretriever-if-needed">3.1 Enhance HybridRetriever (if needed)<a href="#31-enhance-hybridretriever-if-needed" class="hash-link" aria-label="Direct link to 3.1 Enhance HybridRetriever (if needed)" title="Direct link to 3.1 Enhance HybridRetriever (if needed)" translate="no">​</a></h3>
+<p><strong>Tasks</strong> (only if current implementation is incomplete):</p>
+<ol>
+<li class="">
+<p><strong>Add Parallel Execution</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Implement asyncio or threading for parallel searches</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add timeout handling for each search</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add error handling for partial failures</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test performance improvement</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Enhance Fusion Algorithm</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Implement or verify score normalization</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add configurable fusion methods</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Implement deduplication logic</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add result source tracking</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Add Result Metadata</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Track which method contributed each result</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Include individual scores in output</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add fusion metadata to results</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="32-complete-searchadapterhybrid_search">3.2 Complete SearchAdapter.hybrid_search()<a href="#32-complete-searchadapterhybrid_search" class="hash-link" aria-label="Direct link to 3.2 Complete SearchAdapter.hybrid_search()" title="Direct link to 3.2 Complete SearchAdapter.hybrid_search()" translate="no">​</a></h3>
+<p><strong>Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Implement Core Search Flow</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate input parameters</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Map API filters to retriever format</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Set default weights if not provided</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Call HybridRetriever.retrieve() with correct parameters</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Format results using _format_search_results()</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Return formatted response</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Implement Parameter Mapping</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Map query parameter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Map top_k parameter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Map semantic_weight and keyword_weight</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Map filters (author_slug, field_tags, book_ids)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Handle optional parameters gracefully</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Implement Result Formatting</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Use existing <code>_format_search_results()</code> with &quot;hybrid&quot; type</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add hybrid-specific metadata (weights, source)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Preserve individual scores if available</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Build standardized response structure</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Add Error Handling</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Wrap retriever call in try/except</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Handle partial failures (one method fails)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Handle empty results gracefully</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Log errors with structured logging</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Return meaningful error messages</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Add Performance Monitoring</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Log latency for each component</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Log total hybrid search time</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Log result count from each method</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Log fusion statistics</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="33-testing-strategy">3.3 Testing Strategy<a href="#33-testing-strategy" class="hash-link" aria-label="Direct link to 3.3 Testing Strategy" title="Direct link to 3.3 Testing Strategy" translate="no">​</a></h3>
+<p><strong>Unit Tests</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Test Parameter Mapping</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with all parameters provided</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with only required parameters</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with custom weights</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with default weights</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with filters</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Test Result Formatting</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with mock hybrid results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with duplicate results (same chunk_id)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with missing metadata</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with empty result list</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Test Error Handling</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Mock HybridRetriever failure</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Mock partial failure (semantic fails, keyword succeeds)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with invalid parameters</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with malformed results</li>
+</ul>
+</li>
+</ol>
+<p><strong>Integration Tests</strong>:</p>
+<ol>
+<li class="">
+<p><strong>End-to-End Hybrid Search Tests</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test conceptual query (&quot;What is the meaning of virtue?&quot;)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test exact term query (&quot;categorical imperative&quot;)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test mixed query (&quot;Nietzsche&#x27;s critique of morality&quot;)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with filters (author, field_tags, book_ids)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with different weight combinations</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with different top_k values</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Comparative Quality Tests</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Run test queries through all three methods (semantic, keyword, hybrid)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare result quality manually</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify when hybrid provides best results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document optimal weight settings</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Performance Tests</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Measure total latency (should be ~max(semantic, keyword) if parallel)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test concurrent hybrid searches</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare with individual method latencies</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify performance bottlenecks</li>
+</ul>
+</li>
+</ol>
+<p><strong>Test File</strong>: <code>services/api/tests/test_search_adapter_hybrid.py</code></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="34-api-endpoint-implementation">3.4 API Endpoint Implementation<a href="#34-api-endpoint-implementation" class="hash-link" aria-label="Direct link to 3.4 API Endpoint Implementation" title="Direct link to 3.4 API Endpoint Implementation" translate="no">​</a></h3>
+<p><strong>Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Update Search Router</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verify endpoint definition in routers/search.py</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate request schema (HybridSearchRequest)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add optional semantic_weight parameter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add optional keyword_weight parameter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate response schema (SearchResponse)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add proper error responses (400, 401, 500)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add endpoint documentation/examples</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Add Input Validation</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate query is not empty</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate top_k is within allowed range (1-100)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate weights are between 0.0-1.0</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate weights sum to 1.0 (or auto-normalize)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Validate filter format if provided</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Add Response Metadata</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add hybrid search metadata (weights used)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add component latencies (semantic_time, keyword_time, fusion_time)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add result source counts (semantic_count, keyword_count, both_count)</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="35-documentation">3.5 Documentation<a href="#35-documentation" class="hash-link" aria-label="Direct link to 3.5 Documentation" title="Direct link to 3.5 Documentation" translate="no">​</a></h3>
+<p><strong>Tasks</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Update API Documentation</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add hybrid search examples to <a class="" href="/sophia-library-docs/docs/API_QUICK_START.md">API_QUICK_START.md</a></li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Update <a class="" href="/sophia-library-docs/docs/LANGGRAPH_INTEGRATION_GUIDE.md">LANGGRAPH_INTEGRATION_GUIDE.md</a> with hybrid search examples</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add curl examples for different use cases</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document weight parameter usage</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add guidance on when to use hybrid search</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Add Code Documentation</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add docstrings to all methods</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document weight parameter effects</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add usage examples in docstrings</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document return value structure</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Create Search Strategy Guide</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Document when hybrid search excels</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Provide weight tuning guidance</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Add examples of query types and recommended weights</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Include performance considerations</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="phase-4-validation--testing">Phase 4: Validation &amp; Testing<a href="#phase-4-validation--testing" class="hash-link" aria-label="Direct link to Phase 4: Validation &amp; Testing" title="Direct link to Phase 4: Validation &amp; Testing" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="41-manual-testing">4.1 Manual Testing<a href="#41-manual-testing" class="hash-link" aria-label="Direct link to 4.1 Manual Testing" title="Direct link to 4.1 Manual Testing" translate="no">​</a></h3>
+<p><strong>Test Scenarios</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Basic Functionality</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test conceptual query (&quot;What is human flourishing?&quot;)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test exact term query (&quot;eternal recurrence&quot;)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test mixed query (&quot;Plato&#x27;s theory of forms&quot;)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verify results blend semantic and keyword strengths</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Weight Tuning Tests</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with semantic-heavy (0.9/0.1) on conceptual query</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with keyword-heavy (0.1/0.9) on exact term query</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with balanced (0.5/0.5) on mixed query</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with default weights (0.7/0.3)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify optimal weights for different query types</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Filter Testing</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test hybrid search with author filter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test hybrid search with field_tags filter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test hybrid search with book_ids filter</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test hybrid search with multiple filters</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Edge Cases</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test query that only has semantic results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test query that only has keyword results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test query with no results from either method</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Test with extreme weights (1.0/0.0, 0.0/1.0)</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="42-comparative-analysis">4.2 Comparative Analysis<a href="#42-comparative-analysis" class="hash-link" aria-label="Direct link to 4.2 Comparative Analysis" title="Direct link to 4.2 Comparative Analysis" translate="no">​</a></h3>
+<p><strong>Compare All Three Methods</strong>:</p>
+<p>Create a test set of 20 diverse queries:</p>
+<ol>
+<li class="">
+<p><strong>Conceptual Queries</strong> (favor semantic)</p>
+<ul>
+<li class="">&quot;What is the nature of consciousness?&quot;</li>
+<li class="">&quot;Explain the problem of evil&quot;</li>
+<li class="">&quot;What is authentic existence?&quot;</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Exact Term Queries</strong> (favor keyword)</p>
+<ul>
+<li class="">&quot;categorical imperative&quot;</li>
+<li class="">&quot;eternal recurrence&quot;</li>
+<li class="">&quot;theory of forms&quot;</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Mixed Queries</strong> (favor hybrid)</p>
+<ul>
+<li class="">&quot;Nietzsche&#x27;s critique of Christian morality&quot;</li>
+<li class="">&quot;Buddhist approach to suffering and enlightenment&quot;</li>
+<li class="">&quot;Aristotle&#x27;s concept of virtue and excellence&quot;</li>
+</ul>
+</li>
+</ol>
+<p><strong>Validation Method</strong>:</p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Run each query through semantic, keyword, and hybrid</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Manually review top 5 results from each method</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Rate relevance (1-5 scale) for each result</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Calculate average relevance per method</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify which method performs best per query type</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Target: Hybrid average ≥ semantic AND keyword averages</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="43-performance-validation">4.3 Performance Validation<a href="#43-performance-validation" class="hash-link" aria-label="Direct link to 4.3 Performance Validation" title="Direct link to 4.3 Performance Validation" translate="no">​</a></h3>
+<p><strong>Metrics to Collect</strong>:</p>
+<ol>
+<li class="">
+<p><strong>Latency Breakdown</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Semantic search component time</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Keyword search component time</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Fusion algorithm time</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Total end-to-end time</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verify parallel execution (total ≈ max(semantic, keyword) + fusion)</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Throughput Metrics</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Queries per second (single client)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Queries per second (10 concurrent clients)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare with individual method throughput</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Resource Metrics</strong></p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Memory usage during hybrid search</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->CPU usage during hybrid search</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Network latency to both services</li>
+</ul>
+</li>
+</ol>
+<p><strong>Acceptance Criteria</strong>:</p>
+<ul>
+<li class="">p95 latency ≤ 1.5 seconds (worst case sequential)</li>
+<li class="">p95 latency ≤ 1 second (best case parallel)</li>
+<li class="">Can handle 10 concurrent hybrid searches</li>
+<li class="">Resource usage ≤ sum of individual methods</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="44-quality-validation">4.4 Quality Validation<a href="#44-quality-validation" class="hash-link" aria-label="Direct link to 4.4 Quality Validation" title="Direct link to 4.4 Quality Validation" translate="no">​</a></h3>
+<p><strong>Relevance Testing</strong>:</p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Run 20-query test set through hybrid search</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Manually rate top 10 results per query</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Calculate precision@5 and precision@10</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Calculate average relevance score</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Compare with semantic-only and keyword-only results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Target: Hybrid precision@5 ≥ max(semantic, keyword) precision@5</li>
+</ul>
+<p><strong>Fusion Quality Testing</strong>:</p>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identify queries with overlapping results</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verify deduplication works correctly</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verify best-ranked result is kept</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Check that complementary results are both included</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="success-criteria">Success Criteria<a href="#success-criteria" class="hash-link" aria-label="Direct link to Success Criteria" title="Direct link to Success Criteria" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="functional-requirements">Functional Requirements<a href="#functional-requirements" class="hash-link" aria-label="Direct link to Functional Requirements" title="Direct link to Functional Requirements" translate="no">​</a></h3>
+<ul>
+<li class="">✅ Hybrid search successfully combines semantic and keyword results</li>
+<li class="">✅ Result ranking reflects weighted fusion of both methods</li>
+<li class="">✅ Deduplication works correctly for overlapping results</li>
+<li class="">✅ Weights can be configured by users (if exposed)</li>
+<li class="">✅ Filters work correctly across both search methods</li>
+<li class="">✅ API endpoint follows standard response format</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="non-functional-requirements">Non-Functional Requirements<a href="#non-functional-requirements" class="hash-link" aria-label="Direct link to Non-Functional Requirements" title="Direct link to Non-Functional Requirements" translate="no">​</a></h3>
+<ul>
+<li class="">✅ p95 latency ≤ 1.5 seconds for typical queries</li>
+<li class="">✅ Parallel execution reduces total time (if implemented)</li>
+<li class="">✅ Proper error handling with meaningful messages</li>
+<li class="">✅ Comprehensive documentation with examples</li>
+<li class="">✅ Unit test coverage ≥ 80%</li>
+<li class="">✅ Integration tests for all weight combinations</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="quality-requirements">Quality Requirements<a href="#quality-requirements" class="hash-link" aria-label="Direct link to Quality Requirements" title="Direct link to Quality Requirements" translate="no">​</a></h3>
+<ul>
+<li class="">✅ Hybrid search matches or exceeds semantic-only quality</li>
+<li class="">✅ Hybrid search matches or exceeds keyword-only quality</li>
+<li class="">✅ Precision@5 ≥ 0.8 on test query set</li>
+<li class="">✅ Graceful degradation when one method fails</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="deliverables">Deliverables<a href="#deliverables" class="hash-link" aria-label="Direct link to Deliverables" title="Direct link to Deliverables" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p><strong>Code</strong></p>
+<ul>
+<li class="">Completed <code>SearchAdapter.hybrid_search()</code> method</li>
+<li class="">Enhanced HybridRetriever (if needed)</li>
+<li class="">Enhanced <code>_format_search_results()</code> for hybrid results</li>
+<li class="">Updated search router endpoint</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Tests</strong></p>
+<ul>
+<li class="">Unit tests for parameter mapping</li>
+<li class="">Unit tests for result formatting</li>
+<li class="">Integration tests for end-to-end hybrid search</li>
+<li class="">Comparative tests (semantic vs. keyword vs. hybrid)</li>
+<li class="">Performance test suite</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Documentation</strong></p>
+<ul>
+<li class="">API documentation with curl examples</li>
+<li class="">LangGraph integration guide updates</li>
+<li class="">Code docstrings</li>
+<li class="">Search strategy guide (when to use hybrid)</li>
+<li class="">Weight tuning guide</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Validation</strong></p>
+<ul>
+<li class="">Performance metrics report</li>
+<li class="">Comparative analysis results</li>
+<li class="">Quality validation results (relevance scores)</li>
+<li class="">Weight optimization recommendations</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="notes">Notes<a href="#notes" class="hash-link" aria-label="Direct link to Notes" title="Direct link to Notes" translate="no">​</a></h2>
+<ul>
+<li class="">This sprint focuses on <strong>hybrid search</strong> that combines Qdrant (semantic) and OpenSearch (keyword)</li>
+<li class="">Requires successful completion of Sprint 8 (semantic) and Sprint 9 (keyword)</li>
+<li class="">Result formatting harmonization is addressed in Sprint 11</li>
+<li class="">Hybrid search should be the default recommendation for general use cases</li>
+<li class="">Individual methods (semantic/keyword) useful for specialized scenarios</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="references">References<a href="#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/sophia-library-docs/services/retrieval/retrieval_service/hybrid_retriever.py">services/retrieval/retrieval_service/hybrid_retriever.py</a></li>
+<li class=""><a class="" href="/sophia-library-docs/services/api/api_service/services/search_adapter.py">services/api/api_service/services/search_adapter.py</a></li>
+<li class=""><a class="" href="/sophia-library-docs/services/api/api_service/routers/search.py">services/api/api_service/routers/search.py</a></li>
+<li class=""><a class="" href="/sophia-library-docs/docs/API_QUICK_START.md">docs/API_QUICK_START.md</a></li>
+<li class=""><a class="" href="/sophia-library-docs/docs/LANGGRAPH_INTEGRATION_GUIDE.md">docs/LANGGRAPH_INTEGRATION_GUIDE.md</a></li>
+<li class=""><a class="" href="/sophia-library-docs/docs/sprints/sprint-8-qdrant-semantic-search">Sprint 8: Qdrant Semantic Search</a></li>
+<li class=""><a class="" href="/sophia-library-docs/docs/sprints/sprint-9-opensearch-keyword-search">Sprint 9: OpenSearch Keyword Search</a></li>
+<li class=""><a href="https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf" target="_blank" rel="noopener noreferrer" class="">Reciprocal Rank Fusion Research Paper</a></li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/SandPalace/sophia-library-docs/tree/main/docs/sprints/sprint-10-hybrid-search-retriever.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/sophia-library-docs/docs/sprints/sprint-9-opensearch-keyword-search"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Sprint 9: OpenSearch Keyword Search Integration</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/sophia-library-docs/docs/sprints/sprint-11-search-result-formatting"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Sprint 11: Search Result Formatting &amp; API Harmonization</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#overview" class="table-of-contents__link toc-highlight">Overview</a></li><li><a href="#key-achievements" class="table-of-contents__link toc-highlight">Key Achievements</a><ul><li><a href="#-completed-tasks" class="table-of-contents__link toc-highlight">✅ Completed Tasks</a></li><li><a href="#implementation-findings--resolutions" class="table-of-contents__link toc-highlight">Implementation Findings &amp; Resolutions</a></li><li><a href="#current-state" class="table-of-contents__link toc-highlight">Current State</a></li><li><a href="#example-query-results" class="table-of-contents__link toc-highlight">Example Query Results</a></li><li><a href="#missing--future-enhancements" class="table-of-contents__link toc-highlight">Missing / Future Enhancements</a></li></ul></li><li><a href="#phase-1-investigation--discovery" class="table-of-contents__link toc-highlight">Phase 1: Investigation &amp; Discovery</a><ul><li><a href="#11-understand-current-hybridretriever-implementation" class="table-of-contents__link toc-highlight">1.1 Understand Current HybridRetriever Implementation</a></li><li><a href="#12-understand-result-merging-strategies" class="table-of-contents__link toc-highlight">1.2 Understand Result Merging Strategies</a></li><li><a href="#13-examine-existing-search-adapter-integration" class="table-of-contents__link toc-highlight">1.3 Examine Existing Search Adapter Integration</a></li><li><a href="#14-analyze-performance-characteristics" class="table-of-contents__link toc-highlight">1.4 Analyze Performance Characteristics</a></li></ul></li><li><a href="#phase-2-analysis--design" class="table-of-contents__link toc-highlight">Phase 2: Analysis &amp; Design</a><ul><li><a href="#21-implications-analysis" class="table-of-contents__link toc-highlight">2.1 Implications Analysis</a></li><li><a href="#22-design-decisions" class="table-of-contents__link toc-highlight">2.2 Design Decisions</a></li></ul></li><li><a href="#phase-3-implementation-plan" class="table-of-contents__link toc-highlight">Phase 3: Implementation Plan</a><ul><li><a href="#31-enhance-hybridretriever-if-needed" class="table-of-contents__link toc-highlight">3.1 Enhance HybridRetriever (if needed)</a></li><li><a href="#32-complete-searchadapterhybrid_search" class="table-of-contents__link toc-highlight">3.2 Complete SearchAdapter.hybrid_search()</a></li><li><a href="#33-testing-strategy" class="table-of-contents__link toc-highlight">3.3 Testing Strategy</a></li><li><a href="#34-api-endpoint-implementation" class="table-of-contents__link toc-highlight">3.4 API Endpoint Implementation</a></li><li><a href="#35-documentation" class="table-of-contents__link toc-highlight">3.5 Documentation</a></li></ul></li><li><a href="#phase-4-validation--testing" class="table-of-contents__link toc-highlight">Phase 4: Validation &amp; Testing</a><ul><li><a href="#41-manual-testing" class="table-of-contents__link toc-highlight">4.1 Manual Testing</a></li><li><a href="#42-comparative-analysis" class="table-of-contents__link toc-highlight">4.2 Comparative Analysis</a></li><li><a href="#43-performance-validation" class="table-of-contents__link toc-highlight">4.3 Performance Validation</a></li><li><a href="#44-quality-validation" class="table-of-contents__link toc-highlight">4.4 Quality Validation</a></li></ul></li><li><a href="#success-criteria" class="table-of-contents__link toc-highlight">Success Criteria</a><ul><li><a href="#functional-requirements" class="table-of-contents__link toc-highlight">Functional Requirements</a></li><li><a href="#non-functional-requirements" class="table-of-contents__link toc-highlight">Non-Functional Requirements</a></li><li><a href="#quality-requirements" class="table-of-contents__link toc-highlight">Quality Requirements</a></li></ul></li><li><a href="#deliverables" class="table-of-contents__link toc-highlight">Deliverables</a></li><li><a href="#notes" class="table-of-contents__link toc-highlight">Notes</a></li><li><a href="#references" class="table-of-contents__link toc-highlight">References</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/sophia-library-docs/docs/quick-start">Quick Start</a></li><li class="footer__item"><a class="footer__link-item" href="/sophia-library-docs/docs/api-reference">API Reference</a></li><li class="footer__item"><a class="footer__link-item" href="/sophia-library-docs/docs/langgraph-integration">LangGraph Integration</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Resources</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/sophia-library-docs/docs/category/sprints">Sprint Documentation</a></li><li class="footer__item"><a href="http://localhost:8888/api/v1/openapi.json" target="_blank" rel="noopener noreferrer" class="footer__link-item">OpenAPI Spec<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="http://localhost:8888/api/v1/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">Swagger UI<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/SandPalace/sophia-library-docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Sophia Library. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
